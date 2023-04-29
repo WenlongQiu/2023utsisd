@@ -15,7 +15,7 @@
 <body>
         <%  
             Order order = (Order)session.getAttribute("order");
-            CardInfo cardInfo = (CardInfo)session.getAttribute("cardInfo");
+            Payment payment = (Payment)session.getAttribute("payment");
             String cardErr = (String)session.getAttribute("cardErr");
             String nameErr = (String)session.getAttribute("nameErr");
             String expErr = (String)session.getAttribute("expErr");
@@ -27,13 +27,13 @@
             </h1>
    
                 <label>Card Number <br><span class = "err"> <%=(cardErr != null ? cardErr : "")%> </span> </label>
-		<input type="text" value= "${cardInfo.getCardNo()}" id="cardNo" name="cardNo">
+		<input type="text" value= "${payment.getCardNo()}" id="cardNo" name="cardNo">
 		<label>Cardholder Name <br><span class = "err"> <%=(nameErr != null ? nameErr : "")%> </span></label>
-		<input type="text" value= "${cardInfo.getCardHolder()}" id="cardHolder" name="cardHolder">
+		<input type="text" value= "${payment.getCardHolder()}" id="cardHolder" name="cardHolder">
 		<label>Expiry <br><span class = "err"> <%=(expErr != null ? expErr : "")%> </span></label>
-		<input type="text" value= "${cardInfo.getExpiry()}" id="exp" name="cardExp">
+		<input type="text" value= "${payment.getExpiry()}" id="exp" name="cardExp">
 		<label>CVV<br><span class = "err"> <%=(cvvErr != null ? cvvErr : "")%> </span></label>
-		<input type="text" value= "${cardInfo.getCVV()}" id="cvv" name="cvv">
+		<input type="text" value= "${payment.getCVV()}" id="cvv" name="cvv">
 		
                 <input type="submit" value="Save">
 	</form>

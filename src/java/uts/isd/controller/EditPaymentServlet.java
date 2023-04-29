@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import uts.isd.model.CardInfo;
+import uts.isd.model.*;
 import uts.isd.model.dao.DBManager;
 
 /**
@@ -28,19 +28,19 @@ public class EditPaymentServlet extends HttpServlet{
         HttpSession session = request.getSession();
         DBManager manager = (DBManager) session.getAttribute("manager");
 
-        int cardID = (Integer)session.getAttribute("cardID");
+        int paymentID = (Integer)session.getAttribute("paymentID");
         
-        CardInfo cardInfo = null;
+        Payment payment = null;
              
                 try{
-                cardInfo = manager.findCardInfo(cardID);
-                if(cardInfo !=null){
-                session.setAttribute("cardInfo", cardInfo);
+                payment = manager.findPaymentByPayment(paymentID);
+                if(payment !=null){
+                session.setAttribute("payment", payment);
                 request.getRequestDispatcher("editPayment.jsp").include(request, response);
                 }
         
                 }catch (SQLException | NullPointerException ex) {
-                Logger.getLogger(CardInfoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EditPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
             
                 }   
             

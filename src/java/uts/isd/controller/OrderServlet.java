@@ -29,7 +29,7 @@ public class OrderServlet extends HttpServlet {
             double amount = Double.parseDouble(request.getParameter("amount"));
             String product = request.getParameter("product");
             Order order = new Order(orderID, userID, product, amount);
-            session.setAttribute("order", order);
+            session.setAttribute("paymentorder", order);
             request.getRequestDispatcher("cardInfo.jsp").include(request, response);
     }
 }

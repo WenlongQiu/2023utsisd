@@ -5,8 +5,11 @@
 package uts.isd.controller;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.jms.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;  
@@ -26,11 +29,15 @@ public class CardInfoServlet extends HttpServlet {
         Validator validator = new Validator();
         DBManager manager = (DBManager) session.getAttribute("manager");
         validator.clear(session);
-
+        
+        String payMethod = request.getParameter("payMethod");
         String cardNo = request.getParameter("cardNo");
         String cardHolder = request.getParameter("cardHolder");
         String cardExp = request.getParameter("cardExp");
         String cvv = request.getParameter("cvv");
+        String status = request.getParameter("submit");
+        Order order = (Order)session.getAttribute("paymentorder");
+        
       
         CardInfo cardInfo = new CardInfo(cardNo, cardHolder, cvv, cvv);
         session.setAttribute("cardInfo", cardInfo);
@@ -60,10 +67,13 @@ public class CardInfoServlet extends HttpServlet {
             if (!isError) {
              
                 try{
-                manager.addCard(cardNo, cardHolder, cardExp, cvv);
-                int cardID = manager.getCardID();
-                session.setAttribute("cardID", cardID);
-                 //System.out.println("Card ID" + cardID); 
+                manager.addPayment(cardNo, cardHolder, cardExp, cvv, status, payMethod, order.getAmount(), order.getOrderID(), order.getUserID());
+                int paymentID = manager.getPaymentID();
+                session.setAttribute("paymentID", paymentID);
+                Payment payment = manager.findPaymentByPayment(paymentID);
+                
+                session.setAttribute("payment", payment);
+                    
                 request.getRequestDispatcher("payment.jsp").include(request, response);
             
         

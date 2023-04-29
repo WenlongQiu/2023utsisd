@@ -14,7 +14,7 @@
 </head>
 <body>
         <%  
-            Order order = (Order)session.getAttribute("order");
+            Order order = (Order)session.getAttribute("paymentorder");
             
             String cardErr = (String)session.getAttribute("cardErr");
             String nameErr = (String)session.getAttribute("nameErr");
@@ -30,7 +30,11 @@
             <p>Amount: $<%=order.getAmount()%></p>
 		<h2>Credit Card Details:</h2>
                
-
+                <label >Payment Method:</label>
+		<select name="payMethod">
+			<option value="credit">Credit Card</option>
+			
+		</select>
                 <label>Card Number <br><span class = "err"> <%=(cardErr != null ? cardErr : "")%> </span> </label>
 		<input type="text" placeholder="Enter card number" id="cardNo" name="cardNo">
 		<label>Cardholder Name <br><span class = "err"> <%=(nameErr != null ? nameErr : "")%> </span></label>
@@ -40,7 +44,8 @@
 		<label>CVV<br><span class = "err"> <%=(cvvErr != null ? cvvErr : "")%> </span></label>
 		<input type="text" placeholder="Enter 3 or 4 digit CVV" id="cvv" name="cvv" required>
 		
-                <input type="submit" value="Save">
+                <input type="submit" name = "submit" value="Save">
+                <input type="submit" name = "submit" value="Pay">
 	</form>
                
 </body>

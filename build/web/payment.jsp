@@ -13,22 +13,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%  Order order = (Order)session.getAttribute("order");
-        CardInfo cardInfo = (CardInfo)session.getAttribute("cardInfo");
-        int cardID = (Integer)session.getAttribute("cardID");
+        <%  
+        
+        
+        
             
                     %>
                     
                     <h1>
                 Payment
             </h1>
-            <p>Order ID: <%= order.getOrderID()%></p>
-         
-            <p>Amount: <%=order.getAmount()%></p>
-            <p>Card Number: <%=cardInfo.getCardNo()%></p>
-            <p>Card ID <%=cardID%></p>
             
-            <a class = "button" href="EditPaymentServlet?cardID=<%=cardID%>">edit</a>
+            
+            
+            <a class = "button" href="EditPaymentServlet">edit</a>
             <a class = "button" href="DeleteCardServlet">delete</a>
             <a class = "button" href="ViewPayment">view history</a>
             

@@ -12,30 +12,70 @@ import java.util.Date;
  * @author xiaobing
  */
 public class Payment implements Serializable{
-    private int orderID;
-    private String payMethod;
+    
+    
     private String cardNo;
     private String cardHolder;
     private String expiry;
     private String CVV;
+    private String status;
+    private String paidMethod;
     private double amount;
-    private Date payDate;
-    private String submission;
+    private String paidDate;
     
+    private int orderID;
+    private int customerID;
     //construcctor
     public Payment(){}
 
-    public Payment(int orderID, String payMethod, String cardNo, String cardHolder, String expiry, String CVV, double amount, Date payDate, String submission) {
-        this.orderID = orderID;
-        this.payMethod = payMethod;
+    public Payment(String cardNo, String cardHolder, String expiry, String CVV, String status, String paidMethod, double amount, String paidDate, int orderID, int customerID) {
         this.cardNo = cardNo;
         this.cardHolder = cardHolder;
         this.expiry = expiry;
         this.CVV = CVV;
+        this.status = status;
+        this.paidMethod = paidMethod;
         this.amount = amount;
-        this.payDate = payDate;
-        this.submission = submission;
+        this.paidDate = paidDate;
+        this.orderID = orderID;
+        this.customerID = customerID;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPaidMethod() {
+        return paidMethod;
+    }
+
+    public void setPaidMethod(String paidMethod) {
+        this.paidMethod = paidMethod;
+    }
+
+    public String getPaidDate() {
+        return paidDate;
+    }
+
+    public void setPaidDate(String paidDate) {
+        this.paidDate = paidDate;
+    }
+
+   
+
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    
 
     public int getOrderID() {
         return orderID;
@@ -47,13 +87,7 @@ public class Payment implements Serializable{
     
     
 
-    public String getPayMethod() {
-        return payMethod;
-    }
-
-    public void setPayMethod(String payMethod) {
-        this.payMethod = payMethod;
-    }
+  
 
     public String getCardNo() {
         return cardNo;
@@ -96,21 +130,6 @@ public class Payment implements Serializable{
         this.amount = amount;
     }
 
-    public Date getPayDate() {
-        return payDate;
-    }
-
-    public void setPayDate(Date payDate) {
-        this.payDate = payDate;
-    }
-
-    public String getSubmission() {
-        return submission;
-    }
-
-    public void setSubmission(String submission) {
-        this.submission = submission;
-    }
 
 
 

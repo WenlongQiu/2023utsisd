@@ -33,7 +33,7 @@ public class UpdatePaymentServlet extends HttpServlet {
         String cardHolder = request.getParameter("cardHolder");
         String cardExp = request.getParameter("cardExp");
         String cvv = request.getParameter("cvv");
-        int cardID = (Integer)session.getAttribute("cardID");
+        int paymentID = (Integer)session.getAttribute("paymentID");
         //CardInfo cardInfo = new CardInfo(cardNo, cardHolder, cvv, cvv);
         //session.setAttribute("cardInfo", cardInfo);
         
@@ -62,7 +62,7 @@ public class UpdatePaymentServlet extends HttpServlet {
             if (!isError) {
              
                 try{
-                manager.updateCard(cardNo, cardHolder, cardExp, cvv, cardID);
+                manager.updatePayment(cardNo, cardHolder, cardExp, cvv, paymentID);
                 CardInfo cardInfo = new CardInfo(cardNo, cardHolder, cvv, cvv);
                 session.setAttribute("cardInfo", cardInfo); 
                 request.getRequestDispatcher("payment.jsp").include(request, response);
