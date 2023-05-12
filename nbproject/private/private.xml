@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/src/java/uts/isd/model/Payment.java</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/src/java/uts/isd/model/CardInfo.java</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/web/editPayment.jsp</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/src/java/uts/isd/controller/UpdatePaymentServlet.java</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/web/style.css</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/web/cardInfo.jsp</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/web/payment.jsp</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/src/java/uts/isd/model/dao/DBManager.java</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/web/WEB-INF/web.xml</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/src/java/uts/isd/controller/EditPaymentServlet.java</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/src/java/uts/isd/controller/CardInfoServlet.java</file>
-            <file>file:/Users/xiaobing/Desktop/assignment2/IOTBAY1/src/java/uts/isd/controller/ConnServlet.java</file>
+            <file>file:/Users/xosadmin/NetBeansProjects/a2/web/adddevice.jsp</file>
+            <file>file:/Users/xosadmin/NetBeansProjects/a2/web/delcart.jsp</file>
+            <file>file:/Users/xosadmin/NetBeansProjects/a2/web/deletedevice.jsp</file>
+            <file>file:/Users/xosadmin/NetBeansProjects/a2/web/editdevice.jsp</file>
+            <file>file:/Users/xosadmin/NetBeansProjects/a2/web/listdevice.jsp</file>
         </group>
     </open-files>
 </project-private>

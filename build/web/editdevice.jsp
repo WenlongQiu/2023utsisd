@@ -8,10 +8,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Edit Device</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Edit Device</h1>
         <% 
             try {
                 DBConnector dbconnect = new DBConnector();

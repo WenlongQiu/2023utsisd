@@ -7,10 +7,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Devices</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Devices List</h1>
         <p> <a href ="index.jsp"> go back to home page</a></p><!-- comment -->
          <p> <a href ="placeorder.jsp"> go back to the order page</a></p>
           
