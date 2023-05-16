@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import uts.isd.model.CardInfo;
+import uts.isd.model.*;
 import uts.isd.model.dao.DBManager;
 
 /**
@@ -33,6 +33,7 @@ public class UpdatePaymentServlet extends HttpServlet {
         String cardHolder = request.getParameter("cardHolder");
         String cardExp = request.getParameter("cardExp");
         String cvv = request.getParameter("cvv");
+        String status = request.getParameter("submit");
         int paymentID = (Integer)session.getAttribute("paymentID");
         //CardInfo cardInfo = new CardInfo(cardNo, cardHolder, cvv, cvv);
         //session.setAttribute("cardInfo", cardInfo);
@@ -62,14 +63,16 @@ public class UpdatePaymentServlet extends HttpServlet {
             if (!isError) {
              
                 try{
-                manager.updatePayment(cardNo, cardHolder, cardExp, cvv, paymentID);
-                CardInfo cardInfo = new CardInfo(cardNo, cardHolder, cvv, cvv);
-                session.setAttribute("cardInfo", cardInfo); 
-                request.getRequestDispatcher("payment.jsp").include(request, response);
-            
+                    Payment payment = new Payment(cardNo, cardHolder, cardExp, cvv, status);
+                    manager.updatePayment(payment, paymentID);
+                //manager.updatePayment(cardNo, cardHolder, cardExp, cvv, paymentID, status);
+                //CardInfo cardInfo = new CardInfo(cardNo, cardHolder, cvv, cvv);
+                //session.setAttribute("cardInfo", cardInfo); 
+                //request.getRequestDispatcher("PaymentServlet").include(request, response);
+                response.sendRedirect("PaymentServlet");
         
                 }catch (SQLException | NullPointerException ex) {
-                Logger.getLogger(CardInfoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UpdatePaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
             
                 }   
             

@@ -28,7 +28,8 @@ public class EditPaymentServlet extends HttpServlet{
         HttpSession session = request.getSession();
         DBManager manager = (DBManager) session.getAttribute("manager");
 
-        int paymentID = (Integer)session.getAttribute("paymentID");
+        int paymentID = Integer.parseInt(request.getParameter("paymentID"));
+        session.setAttribute("paymentID", paymentID);
         
         Payment payment = null;
              

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import uts.isd.model.Order;
 import uts.isd.model.Payment;
 import uts.isd.model.dao.DBManager;
 
@@ -22,39 +21,36 @@ import uts.isd.model.dao.DBManager;
  *
  * @author xiaobing
  */
-public class PaymentServlet extends HttpServlet{
+public class SearchPaymentServlet extends HttpServlet{
     
  @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         DBManager manager = (DBManager) session.getAttribute("manager");
+
+        String paymentID = request.getParameter("paymentID");
+        String paymentDate = request.getParameter("paymentDate");
+        int customerID = (Integer)session.getAttribute("userID");
+        session.setAttribute("paymentID", paymentID);
         //ArrayList<Payment> payments = null;
-        Order order = (Order)session.getAttribute("paymentorder");//get mannnul input order from orderservlet
-        
-        if(session.getAttribute("userID") == null){
-            session.setAttribute("payErr", "Login to manage payment");
-            response.sendRedirect("login.jsp");
-        }else{
-            int customerID = (Integer)session.getAttribute("userID");
-            session.setAttribute("customerID", customerID);
+        //Payment payment = null;
+             
                 try{
-                ArrayList<Payment> payments = manager.findSavedPayments(customerID);
-                session.setAttribute("payments", payments);
-                if(payments !=null){
+                ArrayList<Payment> payments = manager.searchPayments(paymentID, paymentDate, customerID);
                 
-                request.getRequestDispatcher("payment.jsp").include(request, response);
-                }
+                session.setAttribute("payments", payments);
+                request.getRequestDispatcher("paymentHistory.jsp").include(request, response);
+                //response.sendRedirect("PaymentHistoryServlet");
         
-                }catch (SQLException ex) {
-                Logger.getLogger(PaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }catch (SQLException | NullPointerException ex) {
+                Logger.getLogger(DeletePaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
             
-                } 
-        }
-            
+                }   
             
               
             
     }
-    
 }
+
+

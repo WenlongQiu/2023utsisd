@@ -5,11 +5,9 @@
 package uts.isd.controller;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.jms.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;  
@@ -28,7 +26,7 @@ public class CardInfoServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Validator validator = new Validator();
         DBManager manager = (DBManager) session.getAttribute("manager");
-        validator.clear(session);
+        validator.clear(session);//clear the error messages
         
         String payMethod = request.getParameter("payMethod");
         String cardNo = request.getParameter("cardNo");
@@ -39,10 +37,10 @@ public class CardInfoServlet extends HttpServlet {
         Order order = (Order)session.getAttribute("paymentorder");
         
       
-        CardInfo cardInfo = new CardInfo(cardNo, cardHolder, cvv, cvv);
-        session.setAttribute("cardInfo", cardInfo);
         
-        Boolean isError = false;
+        
+        
+        Boolean isError = false;//show all errors at one time
             if (!validator.validateCardNo(cardNo)) {
                 session.setAttribute("cardErr", "Incorrect Card Number Format");
                 isError = true;
@@ -65,22 +63,36 @@ public class CardInfoServlet extends HttpServlet {
             }
              
             if (!isError) {
-             
+                //registered user 
+                if(session.getAttribute("userID") != null){
                 try{
-                manager.addPayment(cardNo, cardHolder, cardExp, cvv, status, payMethod, order.getAmount(), order.getOrderID(), order.getUserID());
-                int paymentID = manager.getPaymentID();
-                session.setAttribute("paymentID", paymentID);
-                Payment payment = manager.findPaymentByPayment(paymentID);
-                
-                session.setAttribute("payment", payment);
+                int userID = (Integer)session.getAttribute("userID");
+                Payment newPayment = new Payment(cardNo, cardHolder, cardExp, cvv, status, payMethod, order.getAmount(), order.getOrderID(), userID);
+                manager.addPayment(newPayment);
+                //manager.addPayment(cardNo, cardHolder, cardExp, cvv, status, payMethod, order.getAmount(), order.getOrderID(), order.getUserID());
+                //int paymentID = manager.getPaymentID();
+                //session.setAttribute("paymentID", paymentID);
+                //Payment payment = manager.findPaymentByPayment(paymentID);
+                //session.setAttribute("payment", payment);
                     
-                request.getRequestDispatcher("payment.jsp").include(request, response);
+                request.getRequestDispatcher("main.jsp").include(request, response);
             
         
                 }catch (SQLException | NullPointerException ex) {
                 Logger.getLogger(CardInfoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }else{
+                    //anonymous user store userID = 0
+                    try{
+                        Payment newPayment = new Payment(cardNo, cardHolder, cardExp, cvv, status, payMethod, order.getAmount(), order.getOrderID(), 0);
+                        manager.addPayment(newPayment);
+                        request.getRequestDispatcher("main.jsp").include(request, response);
             
-                }   
+        
+                }catch (SQLException | NullPointerException ex) {
+                Logger.getLogger(CardInfoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             
             }else{
                 request.getRequestDispatcher("cardInfo.jsp").include(request, response);

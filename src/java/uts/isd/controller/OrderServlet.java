@@ -25,11 +25,13 @@ public class OrderServlet extends HttpServlet {
             //DBManager manager = (DBManager) session.getAttribute("manager");
 
             int orderID = Integer.parseInt(request.getParameter("orderid"));
-            int userID = Integer.parseInt(request.getParameter("userid"));
+            //int userID = Integer.parseInt(request.getParameter("userid"));加
             double amount = Double.parseDouble(request.getParameter("amount"));
             String product = request.getParameter("product");
-            Order order = new Order(orderID, userID, product, amount);
+            Order order = new Order(orderID, product, amount);
+            
             session.setAttribute("paymentorder", order);
+            //session.setAttribute("userID", userID);加
             request.getRequestDispatcher("cardInfo.jsp").include(request, response);
     }
 }
