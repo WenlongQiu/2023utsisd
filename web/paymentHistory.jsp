@@ -19,6 +19,7 @@
     
     <%  //ArrayList<Payment> payments = (ArrayList)session.getAttribute("payments");
         %>
+        
          <div class="header">
              <h1>IoTBay</h1>
          </div>
@@ -31,18 +32,22 @@
             <a href="login.jsp">login</a>
             <a href="logout.jsp">logout</a>
         </div>
-
-    
-        <p align="right">
-            
-            
-            <a href="PaymentHistoryServlet">List History Payments</a>
+    <center>
+        <h1>Payment History</h1>
+        <h2>
+  
              
-        </p>
-   
+        </h2>
+    </center>
     <div align="center">
-        <table class="table">
-            <caption><h2>List of Saved Payments</h2></caption>
+        <table class="table" border="1" cellpadding="5">
+            <caption><h2>List of Payment History</h2></caption>
+            <form action="SearchPaymentServlet" method="get">
+                <input type="text" name ="paymentID"><!-- comment -->
+                <input type="date" name ="paymentDate">
+                <input type="submit" name ="searchPayment" value = "Search">
+                
+            </form>
             <tr>
                 <th>Payment ID</th>
                 <th>Order ID</th>
@@ -50,7 +55,7 @@
                 <th>Payment Method</th>
                 <th>Card Number</th>
                 <th>Date</th>
-                <th>Actions</th>
+              
             </tr>
             <c:forEach var="payment" items="${payments}">
                 <tr>
@@ -60,18 +65,7 @@
                     <td><c:out value="${payment.getPaymentMethod()}" /></td>
                     <td><c:out value="${payment.getCardNo()}" /></td>
                     <td><c:out value="${payment.getPaymentDate()}" /></td>
-                    <td>
-                        <a href="EditPaymentServlet?paymentID=<c:out value='${payment.getPaymentID()}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="DeletePaymentServlet?paymentID=<c:out value='${payment.getPaymentID()}' />">Delete</a>
-                        <%--<form action="DeletePaymentServlet">
-                            <input type="submit" name = "delete" value="Delete">
-                            <input type="hidden" name = "paymentID" value="${payment.getPaymentID()}">
-                        </form>
-                        --%>
-                        
-                        
-                    </td>
+                    
                 </tr>
             </c:forEach>
         </table>

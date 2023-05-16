@@ -10,18 +10,31 @@
 <html>
 <head>
 	<title>Payment Form</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
 <body>
         <%  
-            Order order = (Order)session.getAttribute("order");
+            //Order order = (Order)session.getAttribute("order");
             Payment payment = (Payment)session.getAttribute("payment");
             String cardErr = (String)session.getAttribute("cardErr");
             String nameErr = (String)session.getAttribute("nameErr");
             String expErr = (String)session.getAttribute("expErr");
             String cvvErr = (String)session.getAttribute("cvvErr");
          %>
-	<form action="UpdatePaymentServlet" method="post">
+         
+        <div class="header">
+             <h1>IoTBay</h1>
+         </div>
+         
+         <div class="menu">
+        <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href ="main.jsp">main</a>
+            <a href ="PaymentServlet">Payment</a>
+            <a href="login.jsp">login</a>
+            <a href="logout.jsp">logout</a>
+        </div>
+	<form class = "form" action="UpdatePaymentServlet" method="post">
             <h1>
                 Payment Details
             </h1>
@@ -35,8 +48,9 @@
 		<label>CVV<br><span class = "err"> <%=(cvvErr != null ? cvvErr : "")%> </span></label>
 		<input type="text" value= "${payment.getCVV()}" id="cvv" name="cvv">
 		
-                <input type="submit" value="Save">
+                <input type="submit" name = "submit" value="Save">
+                <input type="submit" name = "submit" value="Pay">
 	</form>
-               
+              
 </body>
 </html>
