@@ -18,13 +18,13 @@ public class Order implements Serializable{
     
     public Order(){}
 
-    public Order(int orderID, int userID, String product, double amount) {
+    public Order(int orderID, String product, double amount) {
         this.orderID = orderID;
-        this.userID = userID;
+        //this.userID = userID;
         this.product = product;
         this.amount = amount;
     }
-
+/*
     public int getUserID() {
         return userID;
     }
@@ -33,7 +33,7 @@ public class Order implements Serializable{
         this.userID = userID;
     }
 
- 
+ */
 
     public int getOrderID() {
         return orderID;

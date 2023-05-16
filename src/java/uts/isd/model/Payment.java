@@ -13,32 +13,78 @@ import java.util.Date;
  */
 public class Payment implements Serializable{
     
-    
+    private int paymentID;
     private String cardNo;
     private String cardHolder;
     private String expiry;
     private String CVV;
     private String status;
-    private String paidMethod;
+    private String paymentMethod;
     private double amount;
-    private String paidDate;
+    private String paymentDate;
     
     private int orderID;
     private int customerID;
     //construcctor
     public Payment(){}
 
-    public Payment(String cardNo, String cardHolder, String expiry, String CVV, String status, String paidMethod, double amount, String paidDate, int orderID, int customerID) {
+    public Payment(int paymentID, String cardNo, String cardHolder, String expiry, String CVV, String status, String paymentMethod, double amount, String paymentDate, int orderID, int customerID) {
+        this.paymentID = paymentID;
         this.cardNo = cardNo;
         this.cardHolder = cardHolder;
         this.expiry = expiry;
         this.CVV = CVV;
         this.status = status;
-        this.paidMethod = paidMethod;
+        this.paymentMethod = paymentMethod;
         this.amount = amount;
-        this.paidDate = paidDate;
+        this.paymentDate = paymentDate;
         this.orderID = orderID;
         this.customerID = customerID;
+    }
+
+    
+    
+    public Payment(String cardNo, String cardHolder, String expiry, String CVV, String status, String paymentMethod, double amount, String paymentDate, int orderID, int customerID) {
+        this.cardNo = cardNo;
+        this.cardHolder = cardHolder;
+        this.expiry = expiry;
+        this.CVV = CVV;
+        this.status = status;
+        this.paymentMethod = paymentMethod;
+        this.amount = amount;
+        this.paymentDate = paymentDate;
+        this.orderID = orderID;
+        this.customerID = customerID;
+    }
+    
+    public Payment(String cardNo, String cardHolder, String expiry, String CVV, String status, String paymentMethod, double amount, int orderID, int customerID) {
+        this.cardNo = cardNo;
+        this.cardHolder = cardHolder;
+        this.expiry = expiry;
+        this.CVV = CVV;
+        this.status = status;
+        this.paymentMethod = paymentMethod;
+        this.amount = amount;
+        //this.paymentDate = paymentDate;
+        this.orderID = orderID;
+        this.customerID = customerID;
+    }
+    
+    public Payment(String cardNo, String cardHolder, String expiry, String CVV, String status) {
+        this.cardNo = cardNo;
+        this.cardHolder = cardHolder;
+        this.expiry = expiry;
+        this.CVV = CVV;
+        this.status = status;
+        
+    }
+
+    public int getPaymentID() {
+        return paymentID;
+    }
+
+    public void setPaymentID(int paymentID) {
+        this.paymentID = paymentID;
     }
 
     public String getStatus() {
@@ -49,21 +95,24 @@ public class Payment implements Serializable{
         this.status = status;
     }
 
-    public String getPaidMethod() {
-        return paidMethod;
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setPaidMethod(String paidMethod) {
-        this.paidMethod = paidMethod;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    public String getPaidDate() {
-        return paidDate;
+    public String getPaymentDate() {
+        return paymentDate;
     }
 
-    public void setPaidDate(String paidDate) {
-        this.paidDate = paidDate;
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
     }
+
+ 
+
 
    
 
