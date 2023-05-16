@@ -26,10 +26,11 @@
          <div class="menu">
         <a href="#">Home</a>
             <a href="#">Products</a>
-            <a href ="main.jsp">main</a>
+            <a href ="main.jsp">Main</a>
+            <a href ="index.jsp">Order</a>
             <a href ="PaymentServlet">Payment</a>
-            <a href="login.jsp">login</a>
-            <a href="logout.jsp">logout</a>
+            <a style="float:right" href="logout.jsp">Logout</a>
+            <a style="float:right" href="login.jsp">Login</a>
         </div>
 
     

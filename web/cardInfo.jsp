@@ -29,13 +29,14 @@
          <div class="menu">
         <a href="#">Home</a>
             <a href="#">Products</a>
-            <a href ="main.jsp">main</a>
+            <a href ="main.jsp">Main</a>
+            <a href ="index.jsp">Order</a>
             <a href ="PaymentServlet">Payment</a>
-            <a href="login.jsp">login</a>
-            <a href="logout.jsp">logout</a>
+            <a style="float:right" href="logout.jsp">Logout</a>
+            <a style="float:right" href="login.jsp">Login</a>
         </div>
          
-         <c:if test="${not empty userID}">
+         <c:if test="${not empty userID}"><%--  Login user form--%>
          
 	<form class = "form" action="CardInfoServlet" method="post">
             <h1>
@@ -51,7 +52,7 @@
 		<select name="payMethod">
 			<option value="credit">Credit Card</option>
 			
-                </select><br>
+                </select><br><br>
                 <label>Card Number <br><span class = "err"> <%=(cardErr != null ? cardErr : "")%> </span> </label>
 		<input type="text" placeholder="Enter card number" id="cardNo" name="cardNo">
 		<label>Cardholder Name <br><span class = "err"> <%=(nameErr != null ? nameErr : "")%> </span></label>
@@ -65,7 +66,7 @@
                 <input type="submit" name = "submit" value="Pay">
 	</form>
          </c:if>
-         <c:if test="${empty userID}">
+        <c:if test="${empty userID}"> <%--anonymous user form --%>
          
 	<form class = "form" action="CardInfoServlet" method="post">
             <h1>
