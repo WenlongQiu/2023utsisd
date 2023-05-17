@@ -72,7 +72,7 @@
       margin: auto;
     }
 
-    .form input[type=text], .form input[type=submit] {
+    .form input[type=text], .form input[type=submit], .form input[type=password]  {
       width: 100%;
       padding: 12px 20px;
       margin: 8px 0;
