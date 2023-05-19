@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+      const express = require('express');
+const mysql = require('mysql');
+
+// Create connection to MySQL
+const db = mysql.createConnection({
+  host: 'localhost',     // replace with your host name
+  user: 'root',          // replace with your MySQL username
+  password: '',          // replace with your MySQL password
+  database: 'mydatabase' // replace with your database name
+});
+
+db.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  console.log('Connected to the database');
+});
+
+// Initialize express
+const app = express();
+
+// Add route for '/user/:email'
+app.get('/user/:email', (req, res) => {
+  let sql = `SELECT * FROM UerDetail WHERE email = ${db.escape(req.params.email)}`;
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+// Start the server
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});
+
+    </body>
+</html>

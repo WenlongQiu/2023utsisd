@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/demo.css">
+        <script type="text/javascript" src="is/script.js"></script>
+        <title>Home page</title>
+    </head>
+     <h1> User Manager</h1>
+    <body onload="starTime()">
+        <div><span class="time" id="time"></span></div>
+
+        <div>
+            <a href="newjsp.jsp" class="button"> Register </a>
+            <a href="hi.jsp" class="button"> Login</a>
+            <a href="delete.jsp" class="button">Delete</a>
+            <a href="detail.jsp" class="button"> detail</a>
+        </div>
+        <jsp:include page="/connServlet" flush="true"/>
+    </body>
+</html>
