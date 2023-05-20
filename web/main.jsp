@@ -22,7 +22,7 @@
         <a href="#">Home</a>
             <a href="#">Products</a>
             <a href ="main.jsp">Main</a>
-            <a href ="index.jsp">Order</a>
+            <a href ="orderquery.jsp">Order</a>
             <a href ="PaymentServlet">Payment</a>
             <a style="float:right" href="logout.jsp">Logout</a>
             <a style="float:right" href="login.jsp">Login</a>
